@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DimaZone | Diamantes Free Fire</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#070711;
+color:white;
+min-height:100vh;
+}
+
+header{
+padding:20px;
+text-align:center;
+background:linear-gradient(135deg,#10082b,#080817);
+border-bottom:1px solid #302060;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.logo{
+font-size:30px;
+font-weight:900;
+color:#a855f7;
+text-shadow:0 0 18px #8b5cf6;
+}
+
+.logo span{color:#22d3ee}
+
+.hero{
+text-align:center;
+padding:55px 20px 35px;
+background:
+radial-gradient(circle at 50% 0%,#351276 0%,transparent 45%);
+}
+
+.hero h1{
+font-size:38px;
+margin-bottom:15px;
+}
+
+.hero h1 span{
+color:#a855f7;
+}
+
+.hero p{
+color:#b9b9c9;
+font-size:17px;
+margin-bottom:25px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 25px;
+border-radius:12px;
+background:linear-gradient(90deg,#7c3aed,#2563eb);
+color:white;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 0 25px #5b21b680;
+}
+
+section{
+max-width:1000px;
+margin:auto;
+padding:30px 18px;
+}
+
+.title{
+text-align:center;
+font-size:27px;
+margin-bottom:25px;
+}
+
+.title span{color:#a855f7}
+
+.packages{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+gap:15px;
+}
+
+.card{
+background:linear-gradient(145deg,#121225,#0b0b17);
+border:1px solid #29294a;
+border-radius:18px;
+padding:22px 12px;
+text-align:center;
+transition:.2s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+border-color:#8b5cf6;
+box-shadow:0 0 20px #7c3aed55;
+}
+
+.diamond{
+font-size:34px;
+margin-bottom:8px;
+}
+
+.card h3{
+font-size:20px;
+margin-bottom:8px;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#22d3ee;
+margin-bottom:15px;
+}
+
+.buy{
+border:0;
+width:100%;
+padding:11px;
+border-radius:10px;
+background:#7c3aed;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.form-box{
+background:#10101e;
+border:1px solid #2c2c4a;
+border-radius:20px;
+padding:25px;
+max-width:600px;
+margin:auto;
+}
+
+label{
+display:block;
+margin:14px 0 7px;
+color:#d4d4e0;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:14px;
+border-radius:10px;
+border:1px solid #39395b;
+background:#080812;
+color:white;
+outline:none;
+font-size:16px;
+}
+
+input:focus,select:focus{
+border-color:#8b5cf6;
+}
+
+.submit{
+margin-top:20px;
+width:100%;
+padding:15px;
+border:0;
+border-radius:12px;
+background:linear-gradient(90deg,#16a34a,#22c55e);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.payment{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+max-width:600px;
+margin:auto;
+}
+
+.pay{
+padding:18px;
+background:#111120;
+border:1px solid #292945;
+border-radius:13px;
+text-align:center;
+font-weight:bold;
+}
+
+.whatsapp{
+text-align:center;
+margin-top:30px;
+}
+
+.whatsapp a{
+display:inline-block;
+padding:15px 25px;
+background:#16a34a;
+color:white;
+text-decoration:none;
+border-radius:12px;
+font-weight:bold;
+}
+
+footer{
+margin-top:40px;
+padding:25px;
+text-align:center;
+color:#77778b;
+border-top:1px solid #222238;
+}
+
+@media(max-width:500px){
+.hero h1{font-size:30px}
+.packages{grid-template-columns:repeat(2,1fr)}
+.payment{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Dima<span>Zone</span> 💎</div>
+</header>
+
+<div class="hero">
+<h1>Diamantes de <span>Free Fire</span></h1>
+<p>Recargá tus diamantes de forma rápida y sencilla.</p>
+<a href="#comprar" class="btn">COMPRAR DIAMANTES</a>
+</div>
+
+<section>
+<h2 class="title">💎 <span>Paquetes disponibles</span></h2>
+
+<div class="packages">
+
+<div class="card">
+<div class="diamond">💎</div>
+<h3>100 + 10</h3>
+<div class="price">$1.200</div>
+<button class="buy" onclick="seleccionar('100 + 10')">COMPRAR</button>
+</div>
+
+<div class="card">
+<div class="diamond">💎</div>
+<h3>310 + 31</h3>
+<div class="price">$3.600</div>
+<button class="buy" onclick="seleccionar('310 + 31')">COMPRAR</button>
+</div>
+
+<div class="card">
+<div class="diamond">💎</div>
+<h3>520 + 52</h3>
+<div class="price">$6.000</div>
+<button class="buy" onclick="seleccionar('520 + 52')">COMPRAR</button>
+</div>
+
+<div class="card">
+<div class="diamond">💎</div>
+<h3>1.060 + 106</h3>
+<div class="price">$10.800</div>
+<button class="buy" onclick="seleccionar('1.060 + 106')">COMPRAR</button>
+</div>
+
+<div class="card">
+<div class="diamond">💎</div>
+<h3>2.180 + 218</h3>
+<div class="price">$19.500</div>
+<button class="buy" onclick="seleccionar('2.180 + 218')">COMPRAR</button>
+</div>
+
+<div class="card">
+<div class="diamond">💎</div>
+<h3>5.600 + 560</h3>
+<div class="price">$46.000</div>
+<button class="buy" onclick="seleccionar('5.600 + 560')">COMPRAR</button>
+</div>
+
+</div>
+</section>
+
+<section id="comprar">
+<h2 class="title">🛒 <span>Realizar pedido</span></h2>
+
+<div class="form-box">
+
+<label>ID de jugador</label>
+<input id="id" type="text" placeholder="Ingresá tu ID de Free Fire">
+
+<label>Elegí tu paquete</label>
+<select id="paquete">
+<option value="">Seleccionar paquete</option>
+<option>100 + 10 — $1.200</option>
+<option>310 + 31 — $3.600</option>
+<option>520 + 52 — $6.000</option>
+<option>1.060 + 106 — $10.800</option>
+<option>2.180 + 218 — $19.500</option>
+<option>5.600 + 560 — $46.000</option>
+</select>
+
+<label>Tu nombre</label>
+<input id="nombre" type="text" placeholder="Ingresá tu nombre">
+
+<button class="submit" onclick="pedido()">
+ENVIAR PEDIDO POR WHATSAPP
+</button>
+
+</div>
+</section>
+
+<section>
+<h2 class="title">💳 <span>Medios de pago</span></h2>
+
+<div class="payment">
+<div class="pay">💳 Mercado Pago</div>
+<div class="pay">💰 Ualá</div>
+<div class="pay">🏦 Transferencia</div>
+<div class="pay">🏦 Banco Galicia</div>
+</div>
+
+<div class="whatsapp">
+<a href="https://wa.me/541131361153" target="_blank">
+📲 HABLAR POR WHATSAPP
+</a>
+</div>
+</section>
+
+<footer>
+© 2026 DimaZone — Recargas Free Fire
+</footer>
+
+<script>
+function seleccionar(paquete){
+document.getElementById("paquete").value =
+paquete.includes("100") ? "100 + 10 — $1.200" :
+paquete.includes("310") ? "310 + 31 — $3.600" :
+paquete.includes("520") ? "520 + 52 — $6.000" :
+paquete.includes("1.060") ? "1.060 + 106 — $10.800" :
+paquete.includes("2.180") ? "2.180 + 218 — $19.500" :
+"5.600 + 560 — $46.000";
+
+document.getElementById("comprar").scrollIntoView({
+behavior:"smooth"
+});
+}
+
+function pedido(){
+let id=document.getElementById("id").value.trim();
+let paquete=document.getElementById("paquete").value;
+let nombre=document.getElementById("nombre").value.trim();
+
+if(!id || !paquete || !nombre){
+alert("Completá todos los campos antes de enviar.");
+return;
+}
+
+let mensaje =
+"Hola DimaZone 👋%0A%0A"+
+"Quiero comprar diamantes de Free Fire.%0A%0A"+
+"👤 Nombre: "+encodeURIComponent(nombre)+"%0A"+
+"🆔 ID: "+encodeURIComponent(id)+"%0A"+
+"💎 Paquete: "+encodeURIComponent(paquete);
+
+window.open(
+"https://wa.me/541131361153?text="+mensaje,
+"_blank"
+);
+}
+</script>
+
+</body>
+  </html>
+  
