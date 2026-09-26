@@ -357,27 +357,103 @@ behavior:"smooth"
 });
 }
 
-function pedido(){
-let id=document.getElementById("id").value.trim();
-let paquete=document.getElementById("paquete").value;
-let nombre=document.getElementById("nombre").value.trim();
+async function pedido(){
 
-if(!id || !paquete || !nombre){
-alert("Completá todos los campos antes de enviar.");
-return;
-}
+  let id = document.getElementById("id").value.trim();
+  let paquete = document.getElementById("paquete").value;
+  let nombre = document.getElementById("nombre").value.trim();
 
-let mensaje =
-"Hola DimaZone 👋%0A%0A"+
-"Quiero comprar diamantes de Free Fire.%0A%0A"+
-"👤 Nombre: "+encodeURIComponent(nombre)+"%0A"+
-"🆔 ID: "+encodeURIComponent(id)+"%0A"+
-"💎 Paquete: "+encodeURIComponent(paquete);
+  if(!id || !paquete || !nombre){
+    alert("Completá todos los campos antes de enviar.");
+    return;
+  }
 
-window.open(
-"https://wa.me/541131361153?text="+mensaje,
-"_blank"
-);
+  // Verificar que el ID exista
+  const { data: jugador, error: errorJugador } =
+    await supabaseClient
+      .from("jugadores")
+      .select("jugador_id, nombre")
+      .eq("jugador_id", id)
+      .eq("activo", true)
+      .maybeSingle();
+
+  if(errorJugador){
+    console.error(errorJugador);
+    alert("No se pudo verificar el ID. Intentá nuevamente.");
+    return;
+  }
+
+  if(!jugador){
+    alert("❌ El ID de Free Fire no está registrado.");
+    return;
+  }
+
+  // Obtener precio según el paquete
+  let precio = "";
+
+  if(paquete.includes("100")){
+    precio = "$1.200";
+  }else if(paquete.includes("310")){
+    precio = "$3.600";
+  }else if(paquete.includes("520")){
+    precio = "$6.000";
+  }else if(paquete.includes("1.060")){
+    precio = "$10.800";
+  }else if(paquete.includes("2.180")){
+    precio = "$19.500";
+  }else if(paquete.includes("5.600")){
+    precio = "$55.000";
+  }
+
+  // Método de pago
+  let metodoPago =
+    document.getElementById("metodo_pago")?.value ||
+    document.getElementById("metodo")?.value ||
+    "No especificado";
+
+  // Crear código único del pedido
+  let codigoPedido =
+    "DZ-" +
+    Date.now().toString(36).toUpperCase() +
+    "-" +
+    Math.random().toString(36).substring(2,6).toUpperCase();
+
+  // Guardar pedido en Supabase
+  const { error: errorPedido } = await supabaseClient
+    .from("pedidos")
+    .insert({
+      nombre_cliente: nombre,
+      jugador_id: id,
+      paquete: paquete,
+      precio: precio,
+      metodo_pago: metodoPago,
+      estado: "pendiente",
+      codigo_pedido: codigoPedido
+    });
+
+  if(errorPedido){
+    console.error(errorPedido);
+    alert("No se pudo guardar el pedido. Intentá nuevamente.");
+    return;
+  }
+
+  // Crear mensaje de WhatsApp
+  let mensaje =
+    "Hola DimaZone 👋\n\n" +
+    "Quiero comprar diamantes de Free Fire.\n\n" +
+    "🧾 Pedido: " + codigoPedido + "\n" +
+    "👤 Nombre: " + nombre + "\n" +
+    "🆔 ID: " + id + "\n" +
+    "🎮 Jugador: " + jugador.nombre + "\n" +
+    "💎 Paquete: " + paquete + "\n" +
+    "💰 Precio: " + precio + "\n" +
+    "💳 Método de pago: " + metodoPago;
+
+  window.open(
+    "https://wa.me/541131361153?text=" +
+    encodeURIComponent(mensaje),
+    "_blank"
+  );
 }
 </script>
 
