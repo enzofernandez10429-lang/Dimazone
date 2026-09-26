@@ -375,25 +375,35 @@ async function pedido(){
     return;
   }
 
-  // Verificar que el ID exista
-  const { data: jugador, error: errorJugador } =
-    await supabaseClient
-      .from("jugadores")
-      .select("jugador_id, nombre")
-      .eq("jugador_id", id)
-      .eq("activo", true)
-      .maybeSingle();
+  function pedido(){
 
-  if(errorJugador){
-    console.error(errorJugador);
-    alert("No se pudo verificar el ID. Intentá nuevamente.");
-    return;
-  }
+let id=document.getElementById("id").value.trim();
+let paquete=document.getElementById("paquete").value;
+let nombre=document.getElementById("nombre").value.trim();
+let metodoPago=document.getElementById("metodo_pago").value;
 
-  if(!jugador){
-    alert("❌ El ID de Free Fire no está registrado.");
-    return;
-  }
+if(!id || !paquete || !nombre || !metodoPago){
+alert("Completá todos los campos antes de enviar.");
+return;
+}
+
+let precio=paquete.split("– $")[1] || "";
+
+let mensaje =
+"Hola DimaZone 👋\n\n"+
+"Quiero comprar diamantes de Free Fire.\n\n"+
+"👤 Nombre: "+nombre+"\n"+
+"🆔 ID: "+id+"\n"+
+"💎 Paquete: "+paquete+"\n"+
+"💰 Precio: $"+precio+"\n"+
+"💳 Método de pago: "+metodoPago;
+
+window.open(
+"https://wa.me/541131361153?text="+encodeURIComponent(mensaje),
+"_blank"
+);
+
+}
 
   // Obtener precio según el paquete
   let precio = "";
